@@ -8,7 +8,7 @@ namespace PhoneBookApp
 {
     class PhoneBook
     {
-        private List<Contact> _contacts { get; set; }
+        private List<Contact> _contacts { get; set; } = new List<Contact>();
 
         private void DisplayContactDetails(Contact contact)
         {
@@ -49,6 +49,18 @@ namespace PhoneBookApp
         {
             var matchingContacts = _contacts.Where(c => c.Name.Contains(searchPhrase)).ToList();
             DisplayContactsDetails(matchingContacts);
-        } 
+        }
+        public Contact SearchContact(string number)
+        {
+            foreach (Contact contact in _contacts)
+            {
+                if (contact.Number == number)
+                {
+                    return contact;
+                }
+            }
+
+            return null;
+        }
     }
 }
